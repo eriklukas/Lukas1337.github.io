@@ -6,4 +6,4 @@ Since we will be using the TinyLoRa library to communicate with TTN we need a co
 ### Configuring TTN
 Once you have a TTN account you need to add an Application. Navigate to your TTN Console and press the add application button. You will be brought to the following page
 
-![Add application](https://github.com/Lukas1337/Lukas1337.github.io/tree/master/assets/images/add-application.png)
+![Add application](https://raw.githubusercontent.com/Lukas1337/Lukas1337.github.io/master/assets/images/add-application.png)
