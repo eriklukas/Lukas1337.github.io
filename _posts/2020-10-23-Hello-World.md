@@ -24,7 +24,8 @@ Once registered we need to change some settings, so in the top right click setti
 Save your settings and you are done!
 
 ### Code
-```C++
+```CPP
+
 // TinyLoRa with ABP to send Feather M0 Radio battery voltage 
 // initially derived from https://github.com/adafruit/TinyLoRa/blob/master/examples/hello_LoRa/hello_LoRa.ino
 // additional references https://www.thethingsnetwork.org/docs/devices/arduino/api/cayennelpp.html
