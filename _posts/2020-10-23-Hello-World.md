@@ -24,8 +24,7 @@ Once registered we need to change some settings, so in the top right click setti
 Save your settings and you are done!
 
 ### Code
-```CPP
-
+{% highlight cpp linenos %}
 // TinyLoRa with ABP to send Feather M0 Radio battery voltage 
 // initially derived from https://github.com/adafruit/TinyLoRa/blob/master/examples/hello_LoRa/hello_LoRa.ino
 // additional references https://www.thethingsnetwork.org/docs/devices/arduino/api/cayennelpp.html
@@ -94,7 +93,7 @@ void loop() {
     Serial.println("Waiting before sending the next packet...");
     delay(sendInterval * 1000); // to avoid sending too often we add a delay at the bottom of the loop
 }
-```
+{% endhighlight %}
 Replace Network Session Key, App Session Key and Device adress with the values on TTN. Making sure you have the MSB format selected in TTN and that the values are expanded. As in the screenshot below
 
 ![Copy device id](https://raw.githubusercontent.com/Lukas1337/Lukas1337.github.io/master/assets/images/copy-device-id.png)
