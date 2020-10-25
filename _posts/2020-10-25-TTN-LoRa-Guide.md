@@ -27,7 +27,7 @@ Save your settings and you are done!
 {% highlight cpp linenos %}
 // TinyLoRa with ABP to send Feather M0 Radio battery voltage 
 // initially derived from https://github.com/adafruit/TinyLoRa/blob/master/examples/hello_LoRa/hello_LoRa.ino
-// additional references https://www.thethingsnetwork.org/docs/devices/arduino/api/cayennelpp.html
+// Additional references https://www.thethingsnetwork.org/docs/devices/arduino/api/cayennelpp.html
 
 #include <TinyLoRa.h>
 #include <SPI.h>
@@ -45,7 +45,7 @@ uint8_t DevAddr[4] = { 0x00, 0x00, 0x00, 0x00 };
 const unsigned int sendInterval = 30; // How often we will transmit in seconds
 
 const int batteryPin = A7; // The pin for reading the battery voltage on the Feather M0 Radio
-float measuredVoltage = 0; // Used for saving the battery voltage reading
+float measuredVoltage = 0; // Stores the battery voltage reading
 
 // Pinout for Feather 32u4 LoRa
 //TinyLoRa lora = TinyLoRa(7, 8, 4);
@@ -66,20 +66,20 @@ void setup()
     Serial.print("Starting LoRa...");
     lora.setChannel(MULTI); // Define channel
     lora.setDatarate(SF7BW125); // Set datarate https://unsigned.io/understanding-lora-parameters/
-    if(!lora.begin()) { // Wait for LoRa ready
+    if(!lora.begin()) { // Check if radio/lora is working
         Serial.println("Failed");
         Serial.println("Check your radio");
     while(true);
     }
-    Serial.println("OK"); // When LoRa is ready
+    Serial.println("OK"); // When radio/lora is ready
 }
 
 void loop() {
     Serial.println("Sending LoRa Data...");
     measuredVoltage = analogRead(batteryPin);
-    measuredVoltage *= 2.0; // multiply by 2 because of the voltage divider
-    measuredVoltage *= 3.3; // multiply by 3.3V, our reference voltage
-    measuredVoltage /= 1024.0; // convert adc measurement to voltage
+    measuredVoltage *= 2.0; // Multiply by 2 because of the voltage divider
+    measuredVoltage *= 3.3; // Multiply by 3.3V, our reference voltage
+    measuredVoltage /= 1024.0; // Convert adc measurement to voltage
     lpp.reset(); // Resets the buffer
     lpp.addAnalogInput(2, measuredVoltage); // Adds an analogInput to the packet
     lora.sendData(lpp.getBuffer(), lpp.getSize(), lora.frameCounter); // Sends the data
@@ -91,9 +91,11 @@ void loop() {
     delay(1000);
     digitalWrite(LED_BUILTIN, LOW);
     Serial.println("Waiting before sending the next packet...");
-    delay(sendInterval * 1000); // to avoid sending too often we add a delay at the bottom of the loop
+    delay(sendInterval * 1000); // To avoid sending too often we add a delay at the bottom of the loop, can be replaced with sleep for lower current draw
 }
 {% endhighlight %}
+Sample code for reading and sending the battery voltage on the Feather M0 Radio, using TinyLoRa and CayenneLPP
+
 Replace Network Session Key, App Session Key and Device adress with the values on TTN. Making sure you have the MSB format selected in TTN and that the values are expanded. As in the screenshot below
 
 ![Copy device id](https://raw.githubusercontent.com/Lukas1337/Lukas1337.github.io/master/assets/images/copy-device-id.png)
